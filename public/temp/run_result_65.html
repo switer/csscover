@@ -1,0 +1,99 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width = device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" href="../common/css/base.css">
+<link rel="stylesheet" href="../common/css/style_sdk.css">  
+<title>内测码校验</title>
+</head>
+<!-- header -->
+<body>
+<div class="ui-maincontainer" id="gameContainer">
+	<div class="con">
+		<p class="pwdQ"><span class="gr-f14">该游戏正在内测中，请输入内测码后进入游戏。</span></p>
+		<p class="in_par gr-mt10 flb-box">
+			<input type="text" name="validCode" id="validCode" class="Qinput flb-chi flb-p99" placeholder="输入内测码">
+			<a href="javascript:;" class="Qclose flb-chi flb-p1" id="clearValidCode" style="display: none; "></a>
+		</p>
+		<p class="bing ms-cf" id="validCodeNoticeBox"><!--<a href="javascript:;" id="getValidCodeLink" class="ms-fr orn">获得内测码？</a>--></p>
+		<p><input type="button" class="lo_btn higher width100" id="confirmValidCode" data-btnfeed="feed" value="确认"></p>
+		<p class="item gr-pt10">
+            </p><p class="gr-mt10 noti-heart ms-inblock">
+              <span class="label">温馨提示：</span>
+            </p>
+            <span class="label">游戏内测激活码，请到九游游戏发号大厅领取</span>
+        <p></p>
+	</div>
+</div>
+<script type="text/html" id="notOpenTpl">
+    <div class="con">
+        <p class="pwdQ"><span class="gr-f14"><%=message%></span></p>
+        <p class="gr-mt15"><input type="button" class="lo_btn higher width100" id="bbsLink"  data-btnFeed="feed" value="去论坛看看" /></p>
+    </div>
+</script>
+<script type="text/html" id="validateCodeTpl">
+	<div class="con">
+		<p class="pwdQ"><span class="gr-f14">该游戏正在内测中，请输入内测码后进入游戏。</span></p>
+		<p class="in_par gr-mt10 flb-box">
+			<input type="text" name="validCode" id="validCode" class="Qinput flb-chi flb-p99" placeholder="输入内测码">
+			<a href="javascript:;" class="Qclose flb-chi flb-p1"  id="clearValidCode"></a>
+		</p>
+		<p class="bing ms-cf"  id="validCodeNoticeBox"><!--<a href="javascript:;" id="getValidCodeLink" class="ms-fr orn">获得内测码？</a>--></p>
+		<p><input type="button" class="lo_btn higher width100" id="confirmValidCode" data-btnFeed="feed" value="确认" /></p>
+		<p class="item gr-pt10">
+            <p class="gr-mt10 noti-heart ms-inblock">
+              <span class="label">温馨提示：</span>
+            </p>
+            <span class="label">游戏内测激活码，请到九游游戏发号大厅领取</span>
+        </p>
+	</div>
+</script>
+<!-- footer -->
+<script type="text/javascript" src="../../../ucf/opensources/artTemplate/template.min.js"></script>
+<script type="text/javascript" src="../../../ucf/opensources/route/ucRoute.js"></script>
+<script type="text/javascript" src="../../../sdk/src/system/game/routers/game.js"></script>
+<script type="text/javascript" src="../../../ucf/opensources/uch5/h5.js"></script>
+<script type="text/javascript" src="../../../sdkBase/sdkBase.js"></script>
+<script type="text/javascript" src="../../../ucf/src/ucf.js"></script>
+<script type="text/javascript" src="../../../ucf/opensources/zepto/zepto.js"></script>
+<script type="text/javascript" src="../../../ucf/opensources/artTemplate/template.min.js"></script>
+<script type="text/javascript" src="../../../ucf/opensources/backbone/backbone-modify.js"></script>
+<script type="text/javascript" src="../../../sdk/resources/config/business.js"></script>
+<script type="text/javascript" src="../../../sdk/resources/config/environment.js"></script>
+<script type="text/javascript" src="../../../ucf/src/effect/touch.js"></script>
+<script type="text/javascript" src="../../../ucf/src/utils/body.js"></script>
+<script type="text/javascript" src="../../../ucf/src/utils/request.js"></script>
+<script type="text/javascript" src="../../../ucf/src/cacheProvider.js"></script>
+<script type="text/javascript" src="../../../ucf/src/caches.js"></script>
+<script type="text/javascript" src="../../../ucf/src/cookie.js"></script>
+<script type="text/javascript" src="../../../ucf/src/date.js"></script>
+<script type="text/javascript" src="../../../sdk/src/common/base/sdk.js"></script>
+<script type="text/javascript" src="../../../sdk/src/common/base/initializer.js"></script>
+<script type="text/javascript" src="../../../sdk/src/common/event/proxy.js"></script>
+<script type="text/javascript" src="../../../sdk/src/common/event/eventType.js"></script>
+<script type="text/javascript" src="../../../sdk/src/common/event/handler/common.js"></script>
+<script type="text/javascript" src="../../../sdk/src/common/event/handler/sdkInitFinish.js"></script>
+<script type="text/javascript" src="../../../sdk/src/common/hooks/request.js"></script>
+<script type="text/javascript" src="../../../sdk/src/common/ui/mask.js"></script>
+<script type="text/javascript" src="../../../sdk/src/common/ui/msgBox.js"></script>
+<script type="text/javascript" src="../../../sdk/src/common/ui/noticeBox.js"></script>
+<script type="text/javascript" src="../../../sdk/src/common/ui/sdkHeader.js"></script>
+<script type="text/javascript" src="../../../sdk/src/common/utils/elementControl.js"></script>
+<script type="text/javascript" src="../../../sdk/src/common/utils/log.js"></script>
+<script type="text/javascript" src="../../../sdk/src/common/utils/url.js"></script>
+<script type="text/javascript" src="../../../sdk/src/common/utils/virtualEvent.js"></script>
+<script type="text/javascript" src="../../../sdk/src/common/utils/pageCache.js"></script>
+<script type="text/javascript" src="../../../sdk/src/system/general/controllers/general.js"></script>
+<script type="text/javascript" src="../../../sdk/src/system/user/models/account/user.js"></script>
+<script type="text/javascript" src="../../../sdk/src/system/user/controllers/account/user.js"></script>
+<script type="text/javascript" src="../../../sdk/src/system/game/models/validCode.js"></script>
+<script type="text/javascript" src="../../../sdk/src/system/game/controllers/game.js"></script>
+<script type="text/javascript" src="../../../sdk/src/system/game/views/game.js"></script>
+<script type="text/javascript" src="../../../sdk/src/system/game/views/validCode.js"></script>
+<script type="text/javascript" src="../../../bridge.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    S.initializer('game');
+});
+</script>
+
+</body></html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html><html><head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width = device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="MobileOptimized" content="320">
+        <meta name="format-detection" content="telephone=no">
+        <title>充值</title>
+        <link rel="stylesheet" href="../common/css/base.css">
+        <link rel="stylesheet" href="../common/css/style_sdk.css">
+    </head>
+    <!-- header -->
+    <body>
+        <div id="pay">
+            <!--页面主要内容-->
+            <section class="ui-maincontainer" id="payMainBody">
+                <!--模块标题-->
+                <header class="ui-module-title">
+                    <div class="ui-title-text">
+                      <h3 class="ui-abtitle">游戏充值</h3>
+                    </div>
+                </header>
+                <div class="ui-moudle-area ui-bgOverflow gr-pt10">
+                    <div class="ui-module-infobox accountInfo info-box-shadow">
+                        <p class="item li-gray ms-block">
+                          <span class="label ms-fl">充值账号：</span>
+                          </p><div class="li-p-left">
+                            <span class="value ms-fl" id="nickname">litleU</span>
+                            <em class="exp" id="currUserAccount">(11122233)</em>
+                          </div>
+                        <p></p>
+                        <p class="item">
+                          <span class="label li-gray ms-fl">充值游戏：</span>
+                          <span class="value orange" id="payGameName">忘仙</span>
+                        </p>
+                    </div>
+
+                    <div class="ui-module-infobox accountInfo ms-fl li-m-bottom info-box-shadow">
+                        <p class="item gr-mt10">
+                          <span class="label">请选择充值方式：</span>
+                        </p>
+                        <ul class="ui-yx gr-mt10 js-ui">
+                            <li id="cardPayBut" data-link="cardPayWay" data-disabled="" style="width: 25%; ">
+                                <a href="javascript:void(0);">
+                                  <span class="li-yx-w"><img src="../common/sdk_images/g_img/yxczk.png" class="ui-ad"></span>
+                                  <span class="ms-fl ui-yxname">充值卡</span>
+                                </a>
+                            </li>
+                            <li id="alipayBut" data-link="alipay" data-disabled="" style="width: 25%; ">
+                                <a href="javascript:void(0);">
+                                  <span class="li-yx-w"><img src="../common/sdk_images/g_img/z.png" class="ui-ad"></span>
+                                  <span class="ms-fl ui-yxname">支付宝</span>
+                                </a>
+                            </li>
+                            <li id="uPointBut" data-link="uPoint" data-disabled="" style="width: 25%; ">
+                                <a href="javascript:void(0);">
+                                  <span class="li-yx-w"><img src="../common/sdk_images/g_img/yxuk.png" class="ui-ad"></span>
+                                  <span class="ms-fl ui-yxname">U点</span>
+                                </a>
+                            </li>
+                            <li id="cmccPayBut" data-link="cmcc" data-disabled="" style="width: 25%; ">
+                                <a href="javascript:void(0);">
+                                	<span class="li-yx-w"><img src="../common/sdk_images/g_img/yxyd.png" class="ui-ad"></span>
+                                  <span class="ms-fl ui-yxname">移动话费</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!--支付首页-->
+        <script type="text/html" id="payMain_templ">
+            <!--页面主要内容-->
+            <section class="ui-maincontainer" id="payMainBody">
+                <!--模块标题-->
+                <header class="ui-module-title">
+                    <div class="ui-title-text">
+                      <h3 class="ui-abtitle">游戏充值</h3>
+                    </div>
+                </header>
+                <div class="ui-moudle-area ui-bgOverflow gr-pt10">
+                    <div class="ui-module-infobox accountInfo info-box-shadow">
+                        <p class="item li-gray ms-block">
+                          <span class="label ms-fl">充值账号：</span>
+                          <div class="li-p-left">
+                            <span class="value ms-fl" id='nickname'></span>
+                            <em class='exp' id='currUserAccount'></em>
+                          </div>
+                        </p>
+                        <p class="item">
+                          <span class="label li-gray ms-fl">充值游戏：</span>
+                          <span class="value orange" id='payGameName'></span>
+                        </p>
+                    </div>
+
+                    <div class="ui-module-infobox accountInfo ms-fl li-m-bottom info-box-shadow">
+                        <p class="item gr-mt10">
+                          <span class="label">请选择充值方式：</span>
+                        </p>
+                        <ul class="ui-yx gr-mt10 js-ui">
+                            <li id='cardPayBut' data-link='cardPayWay' data-disabled='disabled'>
+                                <a href="javascript:void(0);">
+                                  <span class="li-yx-w"><img src="../common/sdk_images/g_img/yxon.png" class="ui-ad"></span>
+                                  <span class="ms-fl ui-yxname">充值卡</span>
+                                </a>
+                            </li>
+                            <li id='alipayBut' data-link='alipay' data-disabled='disabled'>
+                                <a href="javascript:void(0);" >
+                                  <span class="li-yx-w"><img src="../common/sdk_images/g_img/zon.png" class="ui-ad"></span>
+                                  <span class="ms-fl ui-yxname">支付宝</span>
+                                </a>
+                            </li>
+                            <li id='uPointBut' data-link='uPoint' data-disabled='disabled'>
+                                <a href="javascript:void(0);" >
+                                  <span class="li-yx-w"><img src="../common/sdk_images/g_img/udon.png" class="ui-ad"></span>
+                                  <span class="ms-fl ui-yxname">U点</span>
+                                </a>
+                            </li>
+                            <li id='cmccPayBut' data-link='cmcc' data-disabled='disabled'>
+                                <a href="javascript:void(0);" >
+                                	<span class="li-yx-w"><img src="../common/sdk_images/g_img/ydon.png" class="ui-ad"></span>
+                                  <span class="ms-fl ui-yxname">移动话费</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </script>
+        <!--充值卡充值的支付通道列表-->
+        <script type="text/html" id="payWay_templ">
+            <!--页面主要内容-->
+            <section class="ui-maincontainer" id="payWaysList">
+                <!--模块标题-->
+                <header class="ui-module-title">
+                  <div class="ui-title-text">
+                    <h3 class="title dkicon">充值卡/点卡充值</h3>
+                  </div>
+                </header>
+                <!--版块内容-->
+                <div class="ui-moudle-area gr-pt10" id='cardPayWay'>
+                    <div class="ui-module-infobox gr-pa0 accountInfo info-box-shadow" id="cardPayWayList">
+                    </div>
+                </div>
+            </section>
+        </script>
+        <!--充值卡充值-->
+        <script type="text/html" id="card_templ">
+            <!--页面主要内容-->
+            <section class="ui-maincontainer" id="cardPayBody">
+        	
+                <!--模块标题-->
+                <header class="ui-module-title">
+                  <div class="ui-title-text">
+                    <h3 class="ui-abtitle">请选择充值卡面额(<%= cardName%>)</h3>
+                  </div>
+                </header>
+                <div class="ui-moudle-area" id="cardAmount">
+				<div class="ui-module-infobox" id="payValue">
+                    <p class="ui-btn ms-cf" id='cardPayment'></p>
+                </div>
+                </div>
+                <em class="ui-qu"></em>
+                <div class="ui-moudle-area">
+                    <p class="item gr-mb10"><span class="label">请输入充值卡序列号：</span></p>
+                    <div class="ui-num" id='cardNumber'>
+                        <input type="text" class="uin-input" placeHolder="充值卡序列号" />
+                    </div>
+                    <p class="item gr-mb10 gr-mt10"><span class="label">请输入充值卡密码：</span></p>
+                    <div class="ui-num gr-mb10" id="cardPassword">
+                        <input type="text" class="uin-input" placeHolder="充值卡密码" />
+                    </div>
+                    <div id='payNoticeBox'></div>
+                    <input type="submit" value="充值" class="ui-fbtn gr-mt10" id="toCardPay">
+                    <div id="cardNotice" class='gr-mt10'>
+                       <em class="ui-qu"></em>
+                       <p class="item"><p class="gr-mt10 noti-heart ms-inblock"><span class="label">温馨提示：</span></p><span class="label" id='valueNoticeText'></span><span class="label" id='cardNoticeText'></span></p>
+                    </div>
+                </div>
+            </section>
+        </script>
+        <!--U点支付-->
+        <script type="text/html" id="uPoint_templ">
+            <!--页面主要内容-->
+            <section class="ui-maincontainer" id="uPointPayBody">
+                <!--模块标题-->
+                <header class="ui-module-title">
+                  <div class="ui-title-text">
+                    <h3 class="title">U点充值</h3>
+                  </div>
+                </header>
+                <!--模块内容-->
+                <div class="ui-moudle-area">
+                    <div class="ui-module-infobox" id="accountInfo">
+                        <p class="item"><span class="label">账号：</span><span class="value" id='currUserInfo'></span></p>
+                        <p class="item"><span class="label">您的U点余额为：</span><span class="value" id='uPointBalance'></span>&nbsp;<a href='javascript:;' class="a-link" id="udRedirect">充值</a></p>
+                    </div>
+                    <div class="ui-module-infobox" id="payValue">
+                        <p>请选择充值点数（10U点=1元）：</p>
+                        <p class="ui-btn ms-cf" id='commonUDAmount'>
+                        </p>
+                    </div>
+                    <div class="ui-module-infobox ms-cf" id="payInput">
+                        <span class="ui-label">其他点数：</span>
+                        <fieldset class="ui-input-box ui-input-text" id='otherUDAmount'>
+                            <input type="text" class="ui-input-txt ms-pa gr-ml5" placeholder='请输入正整数'/><!--<a href="javascript:void(0);" class="btn ms-pa">确&nbsp;定</a>-->
+                        </fieldset>
+                    </div>
+					<p class="item gr-mb10"><span id="payNum" class="label" >支付金额：</span><span class="value ui-money" id='selectedPayment' data-value=''></span></p>
+                    <div id='payNoticeBox'></div>
+                    <a href="javascript:void(0);" class="ui-fbtn" id='toUDPayBtn'>立即支付</a>
+                    <em class="ui-qu"></em>
+                    <p class="item"><p class="gr-mt10 noti-heart ms-inblock"><span class="label">温馨提示：</span></p><span class="label" id='noticeText'></span></p>
+                </div>
+            </section>
+        </script>
+        <!--移动手机话费支付-->
+        <script type="text/html" id="cmccPay_templ">
+            <!--页面主要内容-->
+            <section class="ui-maincontainer" id="cmccPayBody">
+                <!--模块标题-->
+                <header class="ui-module-title">
+                  <div class="ui-title-text">
+                    <h3 class="title yiicon">移动手机话费充值</h3>
+                  </div>
+                </header>
+                <div class="ui-moudle-area" id="payValue">
+                    <p class="item gr-mt10"><span class="label">请选择充值金额：</span></p>
+                    <p class="ui-btn ms-cf" id='cmccPayAmount'>
+                    </p>
+					<p class="item gr-mb10 gr-mt10"><span class="label">支付金额：</span><span class="value ui-money" id='selectedPayment' data-value=''></span></p>
+                    <div id='payNoticeBox'></div>
+                    <a href="javascript:void(0);" class="ui-fbtn" id='toCmccPayBtn'>立即支付</a>
+                    <em class="ui-qu"></em>
+                    <p class="item"><p class="gr-mt10 noti-heart ms-inblock"><span class="label">温馨提示：</span></p><span class="label" id='noticeText'></span></p>
+                </div>
+            </section>
+        </script>
+        <!--支付宝支付-->
+        <script type="text/html" id="alipay_templ">
+            <section class="ui-maincontainer" id="aliPayBody">
+            <!--模块标题-->
+            <header class="ui-module-title">
+              <div class="ui-title-text">
+                <h3 class="title zf">支付宝充值</h3>
+              </div>
+            </header>
+            <div class="ui-moudle-area">
+                <div class="ui-module-infobox" id="payValue">
+                    <p class="item gr-mt10"><span class="label">请选择充值金额：</span></p>
+                    <p class="ui-btn ms-cf" id='commonAmount'>
+                    </p>
+                    <div class="ui-module-infobox ms-cf" id="payInput">
+                        <span class="ui-label">其他金额：</span>
+                        <fieldset class="ui-input-box ui-input-text" id="otherAmount">
+                            <input type="text" class="ui-input-txt ms-pa gr-ml5" placeHolder="请输入充值金额"/>
+                        </fieldset>
+                    </div>
+					<p class="item gr-mb10"><span class="label">支付金额：</span><span class="value ui-money" id='selectedPayment' data-value=''></span></p>
+                    <div id='payNoticeBox'></div>
+                    <a href="javascript:void(0);" class="ui-fbtn" id='toAliayBtn'>立即支付</a>
+                    <em class="ui-qu"></em>
+                    <p class="item"><p class="gr-mt10 noti-heart ms-inblock"><span class="label">温馨提示：</span></p><span class="label" id='noticeText'></span></p>
+                </div>
+            </div>
+        </section>
+        </script>
+        <script type="text/html" id="noticeMsgTpl">
+            <section class="ui-maincontainer">
+                <div class="ui-moudle-area ms-pr ui-ofh">
+                    <div class="li-ui-pwd gr-pb10 gr-mt10">
+                        <p class="item gr-pt10"><span class="label" id="noticeTitle"></span></p>
+                        <section id="noticeContent"></section>
+                    </div>
+
+                    <div class="li-ui-pwd gr-pt10 gr-pb10 ms-none" id="noticeBtn"></div>
+                </div>
+            </section>
+        </script>
+        <script type="text/html" id="payHistoryTpl">
+        <section class="ui-maincontainer gr-pt10">
+            <div id="payHistoryHeader">
+                <!--用户信息-->
+                <div class="ui-moudle-area ms-pr gr-mb5">
+                    <img src="../common/sdk_images/tx-grey-male.jpg" class="jlimg" id="userInfoAvatar">
+                    <p class="item ms-pa t-pa">
+                        <span class="value"><em class="ui-name" id="userInfoNickname"></em><em class="exp" id="userInfoUcid"></em></span>
+                        <img id="userInfoGender" class="jlsex">
+                    </p>
+                    <p class="item ms-pa t-pa t-pab">级别：<span id="userInfoLevel"></span></p>
+                </div>
+                <!--模块标题-->
+                <header class="ui-module-title">
+                  <div class="ui-title-text">
+                    <p class="ui-jit">
+                    <h3 class="ui-abtitle">充值游戏：<span class="exb" id="gameName"></span></h3></p>
+                  </div>
+                </header>
+                <!--版块切换-->
+                <ul class="ui-jitab gr-mt5" id="historyTab">
+                    <li class="on" id="historyS">充值成功</li>
+                    <li id="historyF">充值失败</li>
+                    <li id="historyN">处理中</li>
+                </ul> 
+            </div>
+            <!--切换内容-->
+            <div class="ui-moudle-area gr-mt10" id="wrapper">
+                <div class="ui-juc" id="historyTab_0"></div>
+                <div class="ui-juc ms-none" id="historyTab_1"></div>
+                <div class="ui-juc ms-none" id="historyTab_2"></div>
+            </div>
+            <div class="ui-moudle-area" id="moreHistoryBtnArea" style="display: none;">
+                <ul class="ui-jhbtn ms-cf gr-mb10" id="splitPageBtns" style="display: none;">
+                    <a href="javascript:;" class="gr-mr10 splitPage" id="splitPageLast">上一页</a><a href="javascript:;" class="gr-mr10 splitPage" id="splitPageNext">下一页</a>
+                </ul>
+                <div class="ui-pwdbtn" id="moreHistoryBtn" style="display: none;">更多...</div>
+            </div>
+        </section>
+        </script>
+        <script type="text/html" id="payHistoryItem">
+            <div class="ui-module-infobox accountInfo">
+                <p class="item"><span class="label">订单号：</span><span class="value"><%=orderId%></span></p>
+                <p class="item"><span class="label">支付方式：</span><span class="value"><%=payWay%></span></p>
+                <p class="item"><span class="label">充值金额：</span><span class="value"><%=amount%>元</span></p>
+                <p class="item"><span class="label">充值时间：</span><span class="value"><%=payNoteDt%></span></p>
+                <p class="item"><span class="label">充值状态：</span><span class="value"><%=orderStatus%></span></p>
+            </div>
+        </script>
+        <!-- footer -->
+		<script type="text/javascript" src="../../../ucf/opensources/artTemplate/template.min.js"></script>
+		<script type="text/javascript" src="../../../ucf/opensources/route/ucRoute.js"></script>
+		<script type="text/javascript" src="../../../sdk/src/system/pay/routers/pay.js"></script>
+		<script type="text/javascript" src="../../../ucf/opensources/uch5/h5.js"></script>
+		<script type="text/javascript" src="../../../ucf/src/ucf.js"></script>
+        <script type="text/javascript" src="../../../sdkBase/sdkBase.js"></script>
+        <script type="text/javascript" src="../../../ucf/opensources/zepto/zepto.js"></script>
+        <script type="text/javascript" src="../../../ucf/opensources/artTemplate/template.min.js"></script>
+        <script type="text/javascript" src="../../../ucf/opensources/backbone/backbone-modify.js"></script>
+        <script type="text/javascript" src="../../../ucf/opensources/iscroll/iscroll.js"></script>
+        <script type="text/javascript" src="../../../sdk/resources/config/business.js"></script>
+        <script type="text/javascript" src="../../../sdk/resources/data/rPayData.js"></script>
+        <script type="text/javascript" src="../../../sdk/resources/config/environment.js"></script>
+        <script type="text/javascript" src="../../../ucf/src/effect/touch.js"></script>
+        <script type="text/javascript" src="../../../ucf/src/utils/body.js"></script>
+        <script type="text/javascript" src="../../../ucf/src/cacheProvider.js"></script>
+        <script type="text/javascript" src="../../../ucf/src/caches.js"></script>
+        <script type="text/javascript" src="../../../ucf/src/date.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/common/base/sdk.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/common/base/initializer.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/common/event/proxy.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/common/event/eventType.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/common/event/handler/common.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/common/event/handler/sdkInitFinish.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/common/event/handler/pay.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/common/hooks/request.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/common/ui/mask.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/common/ui/msgBox.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/common/ui/noticeBox.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/common/ui/sdkHeader.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/common/utils/elementControl.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/common/utils/log.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/common/utils/url.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/common/utils/virtualEvent.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/common/utils/pageCache.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/common/ui/tab.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/system/general/models/general.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/system/pay/models/pay.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/system/user/models/account/user.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/system/general/controllers/general.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/system/user/controllers/account/user.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/system/game/controllers/game.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/system/pay/models/payWay.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/system/pay/models/payWayUsage.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/system/pay/models/cardPay.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/system/pay/models/uPoint.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/system/pay/models/uPointPay.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/system/pay/models/cmccPay.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/system/pay/models/alipay.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/system/pay/collections/payWay.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/system/pay/routers/pay.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/system/pay/models/payHistory.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/system/pay/controllers/pay.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/system/pay/views/pay.js"></script>
+        <script type="text/javascript" src="../../../sdk/src/system/pay/collections/payHistory.js"></script>
+        <script type="text/javascript" src="../../../bridge.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                S.initializer('pay');
+            });
+        </script>
+    
+
+<div id="bodyMask" style="background-color: rgb(0, 0, 0); position: absolute; z-index: 190; width: 400px; height: 300px; top: 0px; left: 0px; opacity: 0; "></div></body></html>
