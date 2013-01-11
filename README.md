@@ -15,3 +15,8 @@ Install it.
 or
 
     npm install csscover -g
+    
+Runing
+---
+Step 1 :
+    
