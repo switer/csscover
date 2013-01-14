@@ -16,27 +16,35 @@ for (var key in htmls) {
 		arr.push(key);
 	}
 }
-function startServer () {
-	cp.exec('node app.js', function (err, stdout,stderr) {
-		console.log('error : ' + err);
-		console.log('stdout : \n' + stdout);
+function startServer (callback) {
+	var proc = cp.spawn('node',['app.js']);
+	var isruning = false;
+	proc.stdout.on('data', function (data) {
+		console.log("HTTP Server : " + data);
+		if (!isruning) {
+			callback && callback();
+			isruning = true;
+		}
+	}),
+	proc.stderr.on('data', function (data) {
+		console.log(data);
 	});
 }
 function doCover(ditHtlms) {
-	console.log('exec : ' + 'deadweight' + stylesopts + ' ' + ditHtlms + ' -o result.log');
-	cp.exec('deadweight' + stylesopts + ' ' + ditHtlms + ' -o result.log', function (err, stdout,stderr) {
+	cp.exec('ruby ./deadweight/bin/deadweight' + stylesopts + ' ' + ditHtlms + ' -o result.log', function (err, stdout,stderr) {
 		console.log(err);
 		console.log('stdout : \n' + stdout);
 	});
 }
-console.log('exec : ' + 'phantomjs coverhtml.js ' + arr.join(' '));
 cp.exec('phantomjs coverhtml.js ' + arr.join(' '), function (err, stdout,stderr) {
 	console.log('stdout : \n' + stdout);
 	var ditHtlms = ' '
 	for (var i = 0; i < arr.length ; i ++) {
 		ditHtlms += filePath + filePexi + (i + 1) + '.html ';
 	}
-	// startServer();
-	doCover(ditHtlms);
+	startServer(function () {
+		doCover(ditHtlms);
+	});
+	
 	
 });

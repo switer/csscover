@@ -1,14 +1,20 @@
 {
   "name": "csscover",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": false,
   "scripts": {
-    "start": "node app"
+    "start": "node phantomrun"
+  },
+  "directories": {
+    "bin": "bin"
   },
   "dependencies": {
     "express": "3.0.0beta4",
     "jade": "*"
   },
   "email" : "guankaishe@gmail.com",
-  "author" : "switer"
+  "author" : "switer",
+  "bin": {
+      "csscover": "bin/csscover"
+  }
 }
