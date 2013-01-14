@@ -1,7 +1,5 @@
 {
   "name": "csscover",
-  "email" : "guankaishe@gmail.com",
-  "author" : "switer",
   "version": "0.0.1",
   "private": false,
   "scripts": {
@@ -10,5 +8,7 @@
   "dependencies": {
     "express": "3.0.0beta4",
     "jade": "*"
-  }
+  },
+  "email" : "guankaishe@gmail.com",
+  "author" : "switer"
 }
