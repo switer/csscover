@@ -1,7 +1,9 @@
 {
-  "name": "application-name",
+  "name": "csscover",
+  "email" : "guankaishe@gmail.com",
+  "author" : "switer",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "scripts": {
     "start": "node app"
   },
