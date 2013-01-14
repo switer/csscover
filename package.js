@@ -1,9 +1,9 @@
 var config = {
 	"style" : [
-		'cv_style.css'
-	]
+		'style.css'
+	],
 	"html" : {
-		"test.html" : ['', '#!test']
+		"http://localhost:3000/test.html" : ['hash']
 	}
 }
 exports.config = config;

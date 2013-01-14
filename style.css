@@ -1,14 +1,6 @@
-/*COPYRIGHT(C)UCWEB 2012.*/
-/*独立CSS样式表（SDK）.*/
-/*2012.07.06*/
-
-/** @NAME:CSS STYLE
-        @TYPE:页面独立样式表
-    */
-/*全局设定*/
-*:focus{outline:none;}
-a,a:link,a:visited,a:active{text-decoration:none;color:#333;}
-a:hover{}
-body{width:100%;height:100%;color:#333;font:500 normal 17px/1.9 arial;font-family:微软雅黑;background:#F2F2F2;}
-.btn{display:block;text-align:center;border-radius:3px;}
-.ui-input-text{font-size:15px;background:#fff;border:1px solid #c5ced4;height:40px;border-radius:5px;/*box-shadow:1px 1px #fff;*/}
+body div a {border : 1px;}
+body {padding: 12px}
+body {padding: 19px}
+body :hover{color: blue}
+input[type="button"] {top:200px;}
+span a {margin-top: 10px;}
