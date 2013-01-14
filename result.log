@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 body :hover
 input[type="button"]
 span a
 body :hover
+=======
+.btn
+.ui-input-text
+== Error
+>>>>>>> d3dd87dd1770b735367465ee9aad9e24b2f5c8d6
