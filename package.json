@@ -1,11 +1,7 @@
 {
   "name": "csscover",
-<<<<<<< HEAD
-  "version": "0.0.1",
-=======
   "version": "0.1.0",
   "private": false,
->>>>>>> d3dd87dd1770b735367465ee9aad9e24b2f5c8d6
   "scripts": {
     "start": "node phantomrun"
   },

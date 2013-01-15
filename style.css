@@ -2,5 +2,6 @@ body div a {border : 1px;}
 body {padding: 12px}
 body {padding: 19px}
 body :hover{color: blue}
+::selection{color: blue}
 input[type="button"] {top:200px;}
 span a {margin-top: 10px;}

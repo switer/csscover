@@ -5,8 +5,7 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , http = require('http')
-  , colors = require('colors');
+  , http = require('http');
 
 var app = express();
 
@@ -29,5 +28,5 @@ app.configure('development', function(){
 app.get('/', routes.index);
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log((new String(app.get('port'))).yellow);
+  console.log("Express server listening on port " + app.get('port'));
 });

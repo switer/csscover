@@ -91,11 +91,9 @@ class Deadweight
   def report
     log.puts
     log.puts "found #{@unused_selectors.size} unused selectors out of #{@total_selectors} total".yellow
-<<<<<<< HEAD
     puts "found #{@unused_selectors.size} unused selectors out of #{@total_selectors} total".yellow
-=======
     log.puts "found #{@error_selectors.size} which could not be parsed".red
->>>>>>> d3dd87dd1770b735367465ee9aad9e24b2f5c8d6
+    puts "found #{@error_selectors.size} which could not be parsed".red
     log.puts
   end
 
@@ -136,18 +134,11 @@ class Deadweight
 
   def dump(output)
     output.puts(@unused_selectors)
-<<<<<<< HEAD
     puts(@unused_selectors)
-    log.puts "found #{@error_selectors.size} which could not be parsed".red
-    puts "found #{@error_selectors.size} which could not be parsed".red
-    # output.puts "== Error"
-    # puts "== Error"
+    output.puts "== Error"
+    puts "== Error"
     output.puts(@error_selectors)
     puts(@error_selectors)
-=======
-    output.puts "== Error"
-    output.puts(@error_selectors)
->>>>>>> d3dd87dd1770b735367465ee9aad9e24b2f5c8d6
   end
 
   def process!(html)
@@ -240,7 +231,4 @@ private
 end
 
 require 'deadweight/rake_task'
-<<<<<<< HEAD
-=======
 
->>>>>>> d3dd87dd1770b735367465ee9aad9e24b2f5c8d6

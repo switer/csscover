@@ -1,19 +1,18 @@
 #!/usr/bin/env node
 var program = require('commander');
 var chiProc = require('child_process');
-// function list (val) {
-// 	return val.split(',');
-// }
+
 program
   .version('0.1.0')
   .usage('[options] <file ...>')
+  .option('-d, --destination <files>', 'destination file <file, file, ...>')
   .option('-j, --json', 'using json config file')
-  .option('-s, --style <files>', 'covering style-sheet file')
-  .option('-d, --destination <files>', 'destination file')
-  .option('-r, --range <file>..<file>', 'destination file')
+  .option('-o, --output', 'Output result')
+  .option('-s, --style <files>', 'covering style-sheet file <file, file, ...>')
   .parse(process.argv);
-  console.log(program.range);
+
  if (program.json) {
+ 	console.log("node ../phantomrun.js " + program.json);
  	// chiProc.exec();
  } else if (program.style && program.destination) {
  	console.log("node ../phantomrun.js " + program.style + '|' + program.destination);
