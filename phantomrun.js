@@ -1,14 +1,34 @@
+process.chdir(__dirname);
 var cp = require('child_process')
 var colors = require('colors')
-var params =  require('./package')
+var params;
 var filePath = 'http://localhost:3013/temp/'
 var filePexi = 'run_result_'
 var dwPath = './deadweight/bin/deadweight'
-var args = process.argv
+var args = process.argv.slice(2),
+	optionType = args.shift();
 
+this.config = {
+	OPTION_TYPE : {
+		JSON : '--json',
+		SOURCE : '--source'
+	}
+}
+console.log(optionType);
+if (optionType === this.config.OPTION_TYPE.JSON) {
+	console.log(args[0].replace(/^\'/,'').replace(/\'$/,'') + '\\' + args[1]);
+	params =  require(args[0].replace(/^\'/,'').replace(/\'$/,'') + '\\' + args[1]);
+} else if (optionType === this.config.OPTION_TYPE.SOURCE) {
+	console.log(args[0].replace(/^\'/,'').replace(/\'$/,'') + '\\' + args[1]);
+	params.config = {}
+	params.style = args[1].split('|')[0].split(',');
+	params.html = args[1].split('|')[1].split(',');
+	console.log(params.style,params.html);
+	return;
+	// params =  require(args[0].replace(/^\'/,'').replace(/\'$/,'') + '\\' + args[1]);
+}
 
 var that = this;
-
 /**
 *	promise pattern 
 */

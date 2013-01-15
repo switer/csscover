@@ -1,5 +1,6 @@
+body div a
 body :hover
 ::selection
 input[type="button"]
-== Error
+span a
 body :hover
