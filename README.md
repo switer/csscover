@@ -15,7 +15,8 @@ How to use
 ---
 ###要安装的东西比较多###
 *   Install [ruby](http://rubyinstaller.org/) and gems for deadweight.
-*   Install [deadweight](https://github.com/aanand/deadweight) `gem install deadweight`.
+*   Install [deadweight](https://github.com/aanand/deadweight) `gem install deadweight` (csscover 已内嵌
+    了deadweight，why need to install deadweight ？ 因为DW的依赖没有内嵌，例如addressable、nokogiri、css_parser).
 *   Install [node](http://nodejs.org).
 
 Clone it from github :
