@@ -5,24 +5,32 @@ Use [phantomjs](https://github.com/ariya/phantomjs) and [deadweight](https://git
 ## Why csscover ?
 > csscover基于[deadweight](https://github.com/aanand/deadweight), 功能上肯定是会优于deadweight的，
 > 且添加了selector的容错机制与对中文字符的处理机制，更重要的是，支持deadweight所不支持的动态脚本改变DOM
-> 影响的选择器匹配，example/valid 有验证demo。(亲，暂时未写)
+> 影响的选择器匹配
 
 ##Use case
-<ol>
-  <li>remove verbose stylerule from stylesheet file</li>
-  <li>css coverage testing</li>
-</ol>
+
+- 检查页面冗余style rule</li>
+
 How to use
 ---
-Install it.
+###要安装的东西比较多###
+*   Install [ruby](http://rubyinstaller.org/) and gems for deadweight.
+*   Install [deadweight](https://github.com/aanand/deadweight) `gem install deadweight`.
+*   Install [node](http://nodejs.org).
 
-    git clone
+Clone it from github :
 
-or
+    git clone https://github.com/switer/csscover.git
+
+or Install it in npm :
 
     npm install csscover -g
     
-Runing
----
-Step 1 :
+Runing : 
+
+    csscover --help
+##Support
+  &lt;guankaishe@gmail.com&gt;
+
+
     
