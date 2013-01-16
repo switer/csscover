@@ -29,6 +29,17 @@ or Install it in npm :
 Runing : 
 
     csscover --help
+    
+package.js :
+    这个文件是样式文件的配置，在example上有
+    style : 样式文件
+    html [
+        'url',//被检查的网址
+        {//可以用于url + hash的形式 prefix +　suffix
+            prefix : purl, //网址前缀
+            suffix : ['','#'] //网址后缀
+        }
+    ]
 ##Support
   &lt;guankaishe@gmail.com&gt;
 
