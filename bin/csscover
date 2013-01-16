@@ -2,28 +2,32 @@
 var program = require('commander');
 var chiProc = require('child_process');
 var currentPath = process.cwd();
+var cmd;
 program
   .version('0.1.0')
   .usage('[options] <file ...>')
   .option('-d, --destination <files>', 'destination file <file, file, ...>')
   .option('-j, --json <file>', 'using json config file')
-  .option('-o, --output', 'Output result')
+  .option('-o, --output <file>', 'Output result')
   .option('-s, --style <files>', 'covering style-sheet file <file, file, ...>')
   .parse(process.argv);
 process.chdir(__dirname + '/../');
+var outputFile = program.output || 'result.log';
  if (program.json) {
- 	console.log("node phantomrun.js --json '" + currentPath + "' " + program.json);
- 	chiProc.exec("node phantomrun.js --json '" + currentPath + "' " + program.json, function (e, std, ste) {
- 		console.log(std);
- 		console.log(ste);
+ 	cmd = "node phantomrun.js json '" + currentPath + "' " + program.json + ' ' + outputFile
+ 	console.log(cmd);
+ 	chiProc.exec(cmd, function (e, std, ste) {
+		e && console.log( e );
+		console.log( std );
+		console.log( ste );
  	});
  } else if (program.style && program.destination) {
- 	console.log("node phantomrun.js --source '" + currentPath + "' " + program.style + '|' + program.destination);
- 	// chiProc.exec("node phantomrun.js --source '" + currentPath + "' " + program.style + '|' + program.destination, function (e, std, ste) {
- 	// 	console.log(std);
- 	// 	console.log(ste);
- 	// });s
-	// chiProc.exec("node ../phantomrun.js " + program.style + '|' + program.destination);
+ 	cmd = "node phantomrun.js source '" + currentPath + "' " + program.style + ' ' + program.destination + ' ' + outputFile;
+	chiProc.exec(cmd, function (e, std, ste) {
+		e && console.log( e );
+		console.log( std );
+		console.log( ste );
+	});
  } else if (!program.style && program.destination) {
  	console.log('Use -s <file>,... covering style-sheet file');
  } else if (program.style && !program.destination) {

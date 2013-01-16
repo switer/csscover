@@ -1,6 +1,0 @@
-body div a
-body :hover
-::selection
-input[type="button"]
-span a
-body :hover

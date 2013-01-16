@@ -1,33 +1,37 @@
-process.chdir(__dirname);
+
 var cp = require('child_process')
 var colors = require('colors')
-var params;
+
 var filePath = 'http://localhost:3013/temp/'
 var filePexi = 'run_result_'
 var dwPath = './deadweight/bin/deadweight'
 var args = process.argv.slice(2),
 	optionType = args.shift();
-
+	localPath  = args.shift().replace(/^\'/,'').replace(/\'$/,'');
+var params;
 this.config = {
 	OPTION_TYPE : {
-		JSON : '--json',
-		SOURCE : '--source'
+		JSON : 'json',
+		SOURCE : 'source'
 	}
 }
-console.log(optionType);
 if (optionType === this.config.OPTION_TYPE.JSON) {
-	console.log(args[0].replace(/^\'/,'').replace(/\'$/,'') + '\\' + args[1]);
-	params =  require(args[0].replace(/^\'/,'').replace(/\'$/,'') + '\\' + args[1]);
+	params =  require(localPath + '\\' + args.shift());
+	params.config.html  = _populateLocalURL(params.config.html, localPath)
+	params.config.style = _populateLocalURL(params.config.style, localPath)
+	console.log(params);
 } else if (optionType === this.config.OPTION_TYPE.SOURCE) {
-	console.log(args[0].replace(/^\'/,'').replace(/\'$/,'') + '\\' + args[1]);
-	params.config = {}
-	params.style = args[1].split('|')[0].split(',');
-	params.html = args[1].split('|')[1].split(',');
-	console.log(params.style,params.html);
-	return;
-	// params =  require(args[0].replace(/^\'/,'').replace(/\'$/,'') + '\\' + args[1]);
+	params = {
+		config : {}
+	}
+	var cssParams = args.shift().split(','),
+		htmlParams   = args.shift().split(',');
+	params.config.html  = _populateLocalURL(htmlParams, localPath)
+	params.config.style = _populateLocalURL(cssParams, localPath)
+	console.log(params);
 }
-
+var outputFile = args.shift();
+process.chdir(__dirname);
 var that = this;
 /**
 *	promise pattern 
@@ -82,13 +86,17 @@ function _start () {
 **/
 function _readHTMLPropertiesAsArray (htmls) {
 	var arr = [];
-	for (var key in htmls) {
-		if ( htmls[key] instanceof Array ) {
-			for (var i = 0 ; i < htmls[key].length; i ++) {
-				arr.push(key + htmls[key][i]);
+	var htmlUrl;
+	for (var i = 0; i < htmls.length ; i++ ) {
+		htmlUrl = htmls[i];
+		if ( typeof htmlUrl !== 'string' && (htmlUrl instanceof Object)) {
+			for (var j = 0; j < htmlUrl['suffix'].length; j ++) {
+				arr.push(htmlUrl['prefix'] + htmlUrl['suffix'][j]);
 			}
+		} else if (typeof htmlUrl === 'string') {
+			arr.push(htmlUrl);
 		} else {
-			arr.push(key);
+			throw new Error('Unknow URL Collection error !');
 		}
 	}
 	return arr;
@@ -101,7 +109,7 @@ function _startHTTPServer (callback) {
 	proc.stdout.on('data', function (data) {
 	   // if (!that.isServerStart) console.log('Http Server : ' + data);
 	  if (!that.isServerStart) {
-	  	console.log('Http Server : ' + data);
+	  	console.log('Http Server : '.cyan + data);
 	  	that.isServerStart = true;
 		callback && callback();
 	  }
@@ -112,7 +120,7 @@ function _startHTTPServer (callback) {
 	});
 
 	proc.on('exit', function (code) {
-	  console.log('Stop Http Server');
+	  console.log('Exit Http Server...');
 	});
 	//记住该服务进程
 	that._serverPid = proc.pid;
@@ -121,7 +129,10 @@ function _startHTTPServer (callback) {
 *	Covering...Find verbose selector
 **/
 function _deadweightStyle (styles, htmls, deadweightCallback) {
-	cp.exec('ruby ' + dwPath + styles + ' ' + htmls + ' -o result.log', function (err, stdout,stderr) {
+	// process.chdir(localPath);
+	cmd = 'ruby ' + dwPath + styles + ' ' + htmls + ' -o ' + localPath + '/' + outputFile
+	cp.exec('ruby ' + dwPath + styles + ' ' + htmls + ' -o ' + localPath + '/' + outputFile, function (err, stdout,stderr) {
+		console.log('Cover result in : ' + outputFile.grey);
 		err && console.log(err);
 		console.log(stdout);
 		console.log(stderr);
@@ -138,5 +149,19 @@ function _captureHTMLWhithArray (htmls, callback) {
 		}
 		callback && callback(ditHtlms);
 	});
+}
+function _populateLocalURL (urlArray, path) {
+	var pUrlArray = [];
+	for (var i = 0; i < urlArray.length ; i ++) {
+		/**
+		*	http:// | https:// | file:// | A:/ | (linux root /)
+		**/
+		if (!urlArray[i].match(/^http(?=):\/\/|^https:\/\/|^file:\/\/|^[a-zA-Z]:\/|^\//)) {
+			pUrlArray.push( path.replace(/\/$/, '') + '/' + urlArray[i]);
+		} else {
+			pUrlArray.push(urlArray[i]);
+		}
+	}
+	return pUrlArray;
 }
 _start();
