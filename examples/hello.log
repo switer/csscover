@@ -1,0 +1,5 @@
+body :hover
+::selection
+input[type="button"]
+== Error
+body :hover
