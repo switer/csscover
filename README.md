@@ -40,6 +40,7 @@ package.js :
 >            suffix : ['','#'] //网址后缀
 >        }
 >    ]
+
 ##Support
   &lt;guankaishe@gmail.com&gt;
 
