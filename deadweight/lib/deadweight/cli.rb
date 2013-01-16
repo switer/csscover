@@ -1,5 +1,5 @@
 require 'optparse'
-require 'deadweight'
+require  Dir.pwd + '/deadweight/lib/deadweight'
 
 class Deadweight
   class CLI
@@ -43,7 +43,7 @@ class Deadweight
         end
 
         opts.on("-O", "--output FILE",
-                "Where to output orphaned CSS rules") do |v|
+                "Where to output orphaned CSS rules.") do |v|
           @options[:output] = File.new(v, "w")
         end
 

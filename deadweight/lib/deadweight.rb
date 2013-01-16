@@ -1,7 +1,6 @@
 require 'css_parser'
 require 'nokogiri'
 require 'open-uri'
-
 begin
   require 'colored'
 rescue LoadError
@@ -91,7 +90,9 @@ class Deadweight
   def report
     log.puts
     log.puts "found #{@unused_selectors.size} unused selectors out of #{@total_selectors} total".yellow
+    log.puts (@unused_selectors)
     log.puts "found #{@error_selectors.size} which could not be parsed".red
+    log.puts (@error_selectors)
     log.puts
   end
 

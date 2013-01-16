@@ -1,7 +1,7 @@
-if ENV['DEADWEIGHT'] == 'true'
-  require 'deadweight'
-  require 'deadweight/hijack'
-  require 'deadweight/rack/capturing_middleware'
+# if ENV['DEADWEIGHT'] == 'true'
+  require Dir.pwd + '/deadweight/lib/deadweight'
+  require Dir.pwd + '/deadweight/lib/deadweight/hijack'
+  require Dir.pwd + '/deadweight/lib/deadweight/rack/capturing_middleware'
 
   class Deadweight
     module Hijack
@@ -31,5 +31,5 @@ if ENV['DEADWEIGHT'] == 'true'
       end
     end
   end
-end
+# end
 

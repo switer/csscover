@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require 'deadweight/cli'
-
+require Dir.pwd + '/deadweight/lib/deadweight/cli'
+puts Dir.pwd
 Deadweight::CLI.execute(STDOUT, STDIN, STDERR, ARGV.dup)
 
