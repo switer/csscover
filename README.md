@@ -43,6 +43,10 @@ package.js :
         }
     ]
 
+##Compatible
+    
+    Sorry ! 暂时只支持windows，linux稍后推出....至于Mac...我还没有玩过。
+
 ##Support
   &lt;guankaishe@gmail.com&gt;
 
