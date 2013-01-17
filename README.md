@@ -49,7 +49,12 @@ package.js :
     Sorry ! 暂时只支持windows，linux稍后推出....至于Mac...我还没有玩过。
 
 ##Support
-  &lt;guankaishe@gmail.com&gt;
+
+  `如果你运行时，遇到以下的情况`<br />
+  ![node error](https://raw.github.com/switer/resource/master/node_error.png)<br />
+  `别着急，是node服务端口被占用了，在任务管理器找出node的进程，kill掉它`<br />
+  ![kill node process](https://raw.github.com/switer/resource/master/node_process.png)<br /><br />
+  `Author support` &lt;guankaishe@gmail.com&gt;
 
 
     
