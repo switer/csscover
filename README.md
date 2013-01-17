@@ -51,9 +51,13 @@ package.js :
 ##Support
 
   `如果你运行时，遇到以下的情况`<br />
+  <br />
   ![node error](https://raw.github.com/switer/resource/master/node_error.png)<br />
+  <br />
   `别着急，是node服务端口被占用了，在任务管理器找出node的进程，kill掉它`<br />
+  <br />
   ![kill node process](https://raw.github.com/switer/resource/master/node_process.png)<br /><br />
+  <br />
   `Author support` &lt;guankaishe@gmail.com&gt;
 
 
