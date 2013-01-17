@@ -3,9 +3,9 @@
 
 Use [phantomjs](https://github.com/ariya/phantomjs) and [deadweight](https://github.com/aanand/deadweight) to do CSS coverage-testing
 ## Why csscover ?
-> csscover基于[deadweight](https://github.com/aanand/deadweight), 功能上肯定是会优于deadweight的，
-> 且添加了selector的容错机制与对中文字符的处理机制，更重要的是，支持deadweight所不支持的动态脚本改变DOM
-> 影响的选择器匹配
+> csscover基于[deadweight](https://github.com/aanand/deadweight), 功能上肯定是会优于deadweight的，<br />
+> 且添加了selector的容错机制与对中文字符的处理机制，更重要的是，<br />
+> 支持deadweight所不支持的动态脚本改变DOM影响的选择器匹配
 
 ##Use case
 
@@ -14,10 +14,11 @@ Use [phantomjs](https://github.com/ariya/phantomjs) and [deadweight](https://git
 How to use
 ---
 ###要安装的东西比较多###
-*   Install [ruby](http://rubyinstaller.org/) and gems for deadweight.
-*   Install [deadweight](https://github.com/aanand/deadweight) `gem install deadweight` (csscover 已内嵌
-    了deadweight，why need to install deadweight ？ 因为DW的依赖没有内嵌，例如addressable、nokogiri、css_parser).
-*   Install [node](http://nodejs.org).
+*   Install [ruby and gems](http://rubyinstaller.org/) for deadweight. `Add Ruby executables to your PATH` <br />
+    ![ruby install](https://raw.github.com/switer/resource/master/ruby_install.png)
+*   Install [deadweight](https://github.com/aanand/deadweight) `gem install deadweight` <br />
+    (csscover 已内嵌了deadweight，why need to install deadweight ？ 因为DW的依赖没有内嵌，例如addressable、nokogiri、css_parser).
+*   Install [nodejs](http://nodejs.org).
 
 Clone it from github :
 
