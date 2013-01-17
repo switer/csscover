@@ -47,6 +47,7 @@ package.js :
     }
     
 example : 
+
     //请用"" 代替''
     //('style':[] #-> wrong,)
     //("style":[] #-> right,)
