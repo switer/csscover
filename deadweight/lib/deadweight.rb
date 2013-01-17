@@ -50,6 +50,10 @@ class Deadweight
   end
 
   def add_css!(css)
+    #Encoding to UTF-8
+    css = css.force_encoding('UTF-8')
+    #Replace GBK code
+    css = css.gsub!(/[\u0080-\uFFFF]/,'')
     parser = CssParser::Parser.new
     parser.add_block!(css)
 
@@ -151,7 +155,6 @@ class Deadweight
   # Fetch a path, using Mechanize if +mechanize+ is set to +true+.
   def fetch(path)
     log.puts(path)
-
     loc = root + path
 
     if @mechanize

@@ -1,25 +1,25 @@
-// var cp = require('child_process');
-// var fs = require('fs');
-// var config = require('package');
-// cp.exec('phantomjs ', function () {
+/**
+*	Capturing URL's HTML Content
+*	@author switer
+*/
+var args 	= require('system').args,
+	fs 		= require('fs'),
+	count 	= 0,
+	TEMP_DIRECTORY 		= './public/temp/',
+	TEMP_FILE_PREFIX 	= 'run_result_';
+	TEMP_FILE_SUFFIX 	= '.html';
 
-// });
-var args = require('system').args;
-var fs = require('fs');
-var count = 0,
-	path = './public/temp/';
-for (var i = 0; i < args.length ; i ++) {
+for (var i = 0, len = args.length; i < len ; i ++) {
 	if ( i !== 0) {
 		(function (index, url) {
 			var page = require('webpage').create();
-			page.open(url, function () {
+			page.open(decodeURIComponent(url), function (status) {
 				count ++ ;
-				console.log('url : ' + url + '  index : ' + index);
-				fs.write(path + 'run_result_' + index + '.html', page.content);
-				if (count >= args.length - 1) {
-					console.log('finish');
+				console.log('url : ' + decodeURIComponent(url) + '   ( status : ' + status + ' )');
+				fs.write(TEMP_DIRECTORY + TEMP_FILE_PREFIX + index + TEMP_FILE_SUFFIX, page.content);
+				if (count >= len - 1) {
+					console.log('Parsing Compeleted !');
 					phantom.exit();
-
 				}
 			})
 		})(i, args[i]);

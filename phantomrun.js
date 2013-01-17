@@ -1,14 +1,22 @@
 
-var cp = require('child_process')
-var colors = require('colors')
+var cp = require('child_process'),
+	colors = require('colors'),
+	fs = require('fs');
 
-var filePath = 'http://localhost:3013/temp/'
-var filePexi = 'run_result_'
-var dwPath = './deadweight/bin/deadweight'
-var args = process.argv.slice(2),
-	optionType = args.shift();
-	localPath  = args.shift().replace(/^\'/,'').replace(/\'$/,'');
-var params;
+var	HTML_TEMP_URI = 'http://localhost:3013/temp/',
+	HTML_TEMP_FILE_PREFIX = 'run_result_',
+	HTML_TEMP_FILE_SUFFIX = '.html',
+	DEADWEIGHT_LIB_PATH = './deadweight/bin/deadweight',
+	CAPTURE_HTML_SCRIPT = 'coverhtml.js';
+
+var	args = process.argv.slice(2),
+	optionType = args.shift(),
+	localPath  = args.shift().replace(/^\'/,'').replace(/\'$/,''),
+	params;
+
+var REGEXES  = {
+		URI_REGEX : /^http(?=):\/\/|^https:\/\/|^file:\/\/|^[a-zA-Z]:\/|^\//
+	};
 this.config = {
 	OPTION_TYPE : {
 		JSON : 'json',
@@ -16,19 +24,23 @@ this.config = {
 	}
 }
 if (optionType === this.config.OPTION_TYPE.JSON) {
-	params =  require(localPath + '\\' + args.shift());
-	params.config.html  = _populateLocalURL(params.config.html, localPath)
-	params.config.style = _populateLocalURL(params.config.style, localPath)
-	console.log(params);
+	var packageJsName = args.shift()
+	// params =  require(localPath + '\\' + packageJsName);
+	// try {
+		var params = JSON.parse(_readPackgeFile(localPath + '\\' + packageJsName));
+		params.html  = _populateLocalURL(_readHTMLPropertiesAsArray(params.html), localPath, true)
+		params.style = _populateLocalURL(params.style, localPath)
+	// } catch (e) {
+	// 	throw new Error('Read configure file Error ! Please check it exist or not, or format error !');
+	// }
+
+
 } else if (optionType === this.config.OPTION_TYPE.SOURCE) {
-	params = {
-		config : {}
-	}
+	params = {}
 	var cssParams = args.shift().split(','),
 		htmlParams   = args.shift().split(',');
-	params.config.html  = _populateLocalURL(htmlParams, localPath)
-	params.config.style = _populateLocalURL(cssParams, localPath)
-	console.log(params);
+	params.html  = _populateLocalURL(htmlParams, localPath, true)
+	params.style = _populateLocalURL(cssParams, localPath)
 }
 var outputFile = args.shift();
 process.chdir(__dirname);
@@ -64,13 +76,13 @@ function _initialize () {
 	that.isServerStart = false;
 }
 function _start () {
-	var htmls = params.config.html
-		, styles = params.config["style"]
+	var htmls = params.html
+		, styles = params["style"]
 		, stylesopts = ' -s ' + styles.join(' -s ');
 	//将配置文件的HTML属性读出来，放到数组中
-	var htmlArray = _readHTMLPropertiesAsArray( htmls );
+	// var htmlArray = _readHTMLPropertiesAsArray( htmls );
 	//获取解析后的HTML文件
-	_captureHTMLWhithArray(htmlArray, function (htmlParams) {
+	_captureHTMLWhithArray(htmls, function (htmlParams) {
 		_startHTTPServer(function () {
 			_deadweightStyle(stylesopts, htmlParams, function (err) {
 				err && console.log(err);
@@ -107,7 +119,6 @@ function _readHTMLPropertiesAsArray (htmls) {
 function _startHTTPServer (callback) {
 	var proc = cp.spawn('node', ["app.js"]);
 	proc.stdout.on('data', function (data) {
-	   // if (!that.isServerStart) console.log('Http Server : ' + data);
 	  if (!that.isServerStart) {
 	  	console.log('Http Server : '.cyan + data);
 	  	that.isServerStart = true;
@@ -130,9 +141,9 @@ function _startHTTPServer (callback) {
 **/
 function _deadweightStyle (styles, htmls, deadweightCallback) {
 	// process.chdir(localPath);
-	cmd = 'ruby ' + dwPath + styles + ' ' + htmls + ' -o ' + localPath + '/' + outputFile
-	cp.exec('ruby ' + dwPath + styles + ' ' + htmls + ' -o ' + localPath + '/' + outputFile, function (err, stdout,stderr) {
-		console.log('Cover result in : ' + outputFile.grey);
+	cmd = 'ruby ' + DEADWEIGHT_LIB_PATH + styles + ' ' + htmls + ' -o ' + localPath + '/' + outputFile
+	cp.exec('ruby ' + DEADWEIGHT_LIB_PATH + styles + ' ' + htmls + ' -o ' + localPath + '/' + outputFile, function (err, stdout,stderr) {
+		console.log('Covered result in : ' + outputFile.grey);
 		err && console.log(err);
 		console.log(stdout);
 		console.log(stderr);
@@ -141,27 +152,36 @@ function _deadweightStyle (styles, htmls, deadweightCallback) {
 }
 
 function _captureHTMLWhithArray (htmls, callback) {
-	cp.exec('phantomjs coverhtml.js ' + htmls.join(' '), function (err, stdout,stderr) {
+	cp.exec('phantomjs ' + CAPTURE_HTML_SCRIPT + ' ' + htmls.join(' '), function (err, stdout,stderr) {
 		console.log('Parsing URLS : \n' + stdout);
-		var ditHtlms = ' '
+		var distHtlms = ' '
 		for (var i = 0; i < htmls.length ; i ++) {
-			ditHtlms += filePath + filePexi + (i + 1) + '.html ';
+			distHtlms += HTML_TEMP_URI + HTML_TEMP_FILE_PREFIX + (i + 1) + HTML_TEMP_FILE_SUFFIX + ' ';
 		}
-		callback && callback(ditHtlms);
+		callback && callback(distHtlms);
 	});
 }
-function _populateLocalURL (urlArray, path) {
+function _populateLocalURL (urlArray, path, isEncoding) {
 	var pUrlArray = [];
+	var uri;
 	for (var i = 0; i < urlArray.length ; i ++) {
 		/**
 		*	http:// | https:// | file:// | A:/ | (linux root /)
 		**/
-		if (!urlArray[i].match(/^http(?=):\/\/|^https:\/\/|^file:\/\/|^[a-zA-Z]:\/|^\//)) {
-			pUrlArray.push( path.replace(/\/$/, '') + '/' + urlArray[i]);
+		if (!urlArray[i].match(REGEXES.URI_REGEX)) {
+			uri = path.replace(/\/$/, '') + '/' + urlArray[i];
+			isEncoding && (uri = encodeURIComponent(uri));
+			pUrlArray.push( uri );
 		} else {
-			pUrlArray.push(urlArray[i]);
+			uri = isEncoding ? encodeURIComponent(urlArray[i]) : urlArray[i];
+			pUrlArray.push( uri );
 		}
 	}
 	return pUrlArray;
+}
+
+function _readPackgeFile (path) {
+	var content =  fs.readFileSync(path, 'UTF-8');
+  return content;
 }
 _start();
