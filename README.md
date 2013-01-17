@@ -35,14 +35,33 @@ Runing :
 package.js :
 
     //这个文件是样式文件的配置，在example上有
-    style : 样式文件
-    html : [
-        'url',//被检查的网址
-        {//可以用于url + hash的形式 prefix +　suffix
-            prefix : purl, //网址前缀
-            suffix : ['','#'] //网址后缀
-        }
-    ]
+    { 
+        "style" : 样式文件
+        "html" : [
+            "url",//被检查的网址
+            {//可以用于url + hash的形式 prefix +　suffix
+                "prefix" : purl, //网址前缀
+                "suffix" : ["","#"] //网址后缀
+            }
+        ]
+    }
+    
+example : 
+    //请用"" 代替''
+    //('style':[] #-> wrong,)
+    //("style":[] #-> right,)
+    {
+        "style" : [
+    		"style.css"
+    	],
+    	"html" : [
+    		"http://www.baidu.com", 
+    		{
+    		    "prefix" : "http://www.baidu.com",
+    		    "suffix" : ["/s?wd=new&rsv_bp=0&rsv_spt=3&rsv_sug3=2&rsv_sug=0&rsv_sug4=114&rsv_sug1=1&inputT=692"]
+    		}
+    	]
+    }
 
 ##Compatible
     
