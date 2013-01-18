@@ -76,8 +76,12 @@ example :
   <br />
   `别着急，是node服务端口被占用了，在任务管理器找出node的进程，kill掉它`<br />
   <br />
-  ![kill node process](https://raw.github.com/switer/resource/master/node_process.png)<br /><br />
+  ![kill node process](https://raw.github.com/switer/resource/master/node_process.png)<br />
   <br />
+  `当错误出现以下问题，请升级您的node 为最新的`<br />
+  
+    connect EADDRNOTAVAIL
+   <br /><br />
   `Author support` &lt;guankaishe@gmail.com&gt;
 
 
