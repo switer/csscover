@@ -9,7 +9,7 @@
     "bin": "bin"
   },
   "dependencies": {
-    "express": "3.0.0beta4",
+    "express": "4.19.2",
     "commander" : "1.1.1",
     "colors" : "0.6.0-1",
     "jade": "*"
